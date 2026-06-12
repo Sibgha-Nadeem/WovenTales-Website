@@ -13,29 +13,28 @@ const app = express();
 // Middleware
 app.use(express.json());
 
+// ✅ FIXED CORS (production + localhost)
 app.use(
   cors({
-<<<<<<< HEAD
-  origin: [
-    "http://localhost:3000",
-    "https://your-frontend-url.vercel.app"
-  ],
-  credentials: true,
-})
-=======
-    origin: "*", // change later to your frontend URL in production
+    origin: [
+      "http://localhost:3000",
+      "https://woven-tales-website.vercel.app"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   })
->>>>>>> c84ccc510c64055a9b22c9727d7f35c5bc26cb5f
 );
 
-// Ensure uploads folder exists (NOTE: won't persist on Vercel, but safe to keep)
+// ✅ Handle preflight requests (IMPORTANT for signup/login)
+app.options("*", cors());
+
+// Ensure uploads folder exists (Vercel note: not persistent)
 const avatarsDir = path.join(__dirname, "uploads/avatars");
 if (!fs.existsSync(avatarsDir)) {
   fs.mkdirSync(avatarsDir, { recursive: true });
-});
+}
 
-// Serve uploaded files (will not persist on Vercel, but kept for compatibility)
+// Serve uploaded files (will not persist on Vercel)
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // MongoDB connection
@@ -59,9 +58,5 @@ app.get("/", (req, res) => {
   res.send("API is running on Vercel");
 });
 
-// IMPORTANT: export for Vercel
-<<<<<<< HEAD
+// Export for Vercel
 module.exports = serverless(app);
-=======
-module.exports = serverless(app);
->>>>>>> c84ccc510c64055a9b22c9727d7f35c5bc26cb5f
