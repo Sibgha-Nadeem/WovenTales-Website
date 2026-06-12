@@ -15,12 +15,18 @@ app.use(express.json());
 
 app.use(
   cors({
+<<<<<<< HEAD
   origin: [
     "http://localhost:3000",
     "https://your-frontend-url.vercel.app"
   ],
   credentials: true,
 })
+=======
+    origin: "*", // change later to your frontend URL in production
+    credentials: true,
+  })
+>>>>>>> c84ccc510c64055a9b22c9727d7f35c5bc26cb5f
 );
 
 // Ensure uploads folder exists (NOTE: won't persist on Vercel, but safe to keep)
@@ -54,4 +60,8 @@ app.get("/", (req, res) => {
 });
 
 // IMPORTANT: export for Vercel
+<<<<<<< HEAD
 module.exports = serverless(app);
+=======
+module.exports = serverless(app);
+>>>>>>> c84ccc510c64055a9b22c9727d7f35c5bc26cb5f
