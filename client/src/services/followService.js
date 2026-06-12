@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:5000/api/followers";
+const API = "https://woven-tales-website.vercel.app/api/followers";
 
 export const followUser = async (id) => {
   return await axios.post(`${API}/follow/${id}`, {}, {

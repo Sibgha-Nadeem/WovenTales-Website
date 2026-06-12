@@ -111,7 +111,7 @@ const BlogList = () => {
     const fetchFollowing = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:5000/api/follow/following", {
+        const res = await axios.get("http://woven-tales-website.vercel.app/api/follow/following", {
           headers: { Authorization: `Bearer ${token}` }
         });
 

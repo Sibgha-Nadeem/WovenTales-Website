@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 import { getProfile, updateAvatar, updateProfile } from "../../services/userService";
 import "./Profile.css";
 
-const backendUrl = "http://localhost:5000";
+const backendUrl = "http://woven-tales-website.vercel.app";
 
 const Profile = () => {
   const [user, setUser] = useState(null);

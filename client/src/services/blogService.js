@@ -3,7 +3,7 @@ import axios from "axios";
 // Fetch all blogs
 export const getAllBlogs = async () => {
   try {
-    const response = await axios.get("http://localhost:5000/api/blogs");
+    const response = await axios.get("http://woven-tales-website.vercel.app/api/blogs");
     return response.data; // array of blogs
   } catch (err) {
     console.error("Error fetching blogs:", err);
@@ -22,7 +22,7 @@ export const createBlog = async (blogData) => {
   };
 
   const response = await axios.post(
-    "http://localhost:5000/api/blogs",
+    "http://woven-tales-website.vercel.app/api/blogs",
     blogData,
     config
   );
@@ -33,7 +33,7 @@ export const toggleLikeBlog = async (blogId, like) => {
   const token = localStorage.getItem("token");
   try {
     const response = await axios.patch(
-      `http://localhost:5000/api/blogs/${blogId}/like`,
+      `http://woven-tales-website.vercel.app/api/blogs/${blogId}/like`,
       { like },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -51,7 +51,7 @@ export const addCommentToBlog = async (blogId, text) => {
 
   try {
     const response = await axios.post(
-      `http://localhost:5000/api/blogs/${blogId}/comments`,
+      `http://woven-tales-website.vercel.app/api/blogs/${blogId}/comments`,
       { text },
       {
         headers: {
